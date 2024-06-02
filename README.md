@@ -22,7 +22,7 @@ git clone https://github.com/Techbyets/Afrihost-Bank-Account-Generator-.git
 
 cd Afrihost-Bank-Account-Generator
 
-python prank_program.py
+python bank_account_number_gen.py
 
 Choose a Bank: Select a bank from the list provided. You can choose from Chase Bank, Capital One, Tyme Bank, African Bank, Capitec, Absa, or FNB.
 

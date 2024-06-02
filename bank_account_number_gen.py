@@ -1,4 +1,12 @@
 import random
+import time
+
+# ANSI color escape codes
+RED = "\033[91m"
+GREEN = "\033[92m"
+YELLOW = "\033[93m"
+CYAN = "\033[96m"
+END = "\033[0m"
 
 banks = {
     1: "Chase Bank",
@@ -39,10 +47,37 @@ def generate_account_number(bank, account_type):
     account_number = ''.join([str(random.randint(0, 9)) for _ in range(account_length)])
     return account_number
 
+def show_banner():
+    print(RED + "=======================================")
+    print("        Bank Account Number Generator   ")
+    print("                 by DroidDevHub         ")
+    print("=======================================" + END)
+    print()
+
+def show_loading_screen():
+    print(YELLOW + "Loading..." + END)
+    for _ in range(5):
+        time.sleep(0.5)
+        print(".", end="", flush=True)
+    print(END)
+
+def show_thank_you_message():
+    print(GREEN + "\nThank you for using this tool!" + END)
+
+    print(YELLOW + "For more tools and updates, visit my " + CYAN + "GitHub: https://github.com/Techbyets" + END)
+    
+    
+    
+    print(YELLOW + "You can also join my Telegram channel: " + CYAN + " https://t.me/DroidDevHub" + END)
+    
+
 if __name__ == "__main__":
+    show_loading_screen()
+    show_banner()
+
     print("Select a bank:")
     for key, value in banks.items():
-        print(key, "-", value)
+        print(CYAN + str(key) + " - " + value + END)
 
     bank_choice = int(input("Enter the number corresponding to the bank you want to generate an account number for: "))
 
@@ -51,11 +86,13 @@ if __name__ == "__main__":
     else:
         print("Select the type of account:")
         for key, value in account_types.items():
-            print(key, "-", value)
+            print(CYAN + str(key) + " - " + value + END)
 
         account_type_choice = int(input("Enter the number corresponding to the type of account you want to generate: "))
 
         if account_type_choice not in account_types:
             print("Invalid account type selection.")
         else:
-            print("Generated Account Number:", generate_account_number(bank_choice, account_type_choice))
+            show_loading_screen()
+            print(GREEN + "Generated Account Number:", generate_account_number(bank_choice, account_type_choice) + END)
+            show_thank_you_message()
